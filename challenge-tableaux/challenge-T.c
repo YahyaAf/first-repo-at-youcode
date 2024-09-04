@@ -142,4 +142,54 @@ int main()
 
     return 0;
 }
+challenge 8;
+int main()
+{
+    int n;
+    int i,j;
+    printf("Donner le nombre n : ");
+    scanf("%d",&n);
+    int T[n];
+    int J[n];
+    for(i=0;i<n;i++){
+        printf("entre la valeur %d : ",i+1);
+        scanf("%d",&T[i]);
+        for(j=0;j<n;j++){
+            J[i]=T[i];
+        }
+    }
+     for(i=0;i<n;i++){
+        printf("T1  : %d \n",T[i]);
+        }
+     for(i=0;i<n;i++){
+        printf("T2  : %d \n",J[i]);
+     }
+
+
+    return 0;
+}
+Exercice aléatoire:
+int main()
+{
+    int n;
+    int i;
+    printf("Donner le nombre n : ");
+    scanf("%d",&n);
+    int T[n];
+    for(i=0;i<n;i++){
+        printf("entre la valeur %d : ",i+1);
+        scanf("%d",&T[i]);
+     }
+     for(i=0;i<n;i++){
+        if(T[i]%2!=0){
+            printf("les valeur %d : \n",T[i]);
+        }
+     }
+
+
+    return 0;
+}
+
+
+
 
