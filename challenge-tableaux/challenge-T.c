@@ -210,6 +210,34 @@ challenge 13:
 
     return 0;
 }
+Exercice from prof:
+    int main()
+{
+    int n;
+    int i;
+    printf("Donner le nombre n : ");
+    scanf("%d",&n);
+    int T[n];
+    for(i=0;i<n;i++){
+        printf("entre la valeur %d : ",i+1);
+        scanf("%d",&T[i]);
+    }
+    int min=T[0];
+    for(i=0;i<n;i++){
+        if(T[i]%2!=0 && T[i]%5==0){
+            printf("%d \n",T[i]);
+          if(min>T[i]){
+            min=T[i];
+        }
+    }
+    }
+    printf("le min est : %d \n",min);
+
+
+
+
+    return 0;
+}
 
 
 
