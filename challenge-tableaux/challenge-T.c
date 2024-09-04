@@ -121,4 +121,25 @@ int main()
 
     return 0;
 }
+challenge 14:
+int main()
+{
+    int n;
+    int i;
+    int somme=0;
+    float moy;
+    printf("Donner le nombre n : ");
+    scanf("%d",&n);
+    int T[n];
+    for(i=0;i<n;i++){
+        printf("entre la valeur %d : ",i+1);
+        scanf("%d",&T[i]);
+        somme=somme+T[i];
+        moy=somme/n;
+    }
+    printf("voila la somme de ces elements : %d \n",somme);
+    printf("Et voila la moyenne :  %f",moy);
+
+    return 0;
+}
 
