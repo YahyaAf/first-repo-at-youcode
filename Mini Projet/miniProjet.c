@@ -39,12 +39,34 @@ for(i=0;i<n;i++){
 }
 }
 
+void Update(Livre liv[],int n){
+    char titreR[100];
+    int quantiteNew;
+    int trouve=0;
+    printf("Donner le titre de livre pour modifier votre quantite de stock : ");
+    scanf("%s",titreR);
+    for(int i=0;i<n;i++){
+    if(strcmp(liv[i].titre,titreR)==0){
+        printf("Voila last Quantite de Stock : %d \n",liv[i].quantite);
+        printf("Donner la nouvelle quantite : ");
+        scanf("%d",&quantiteNew);
+        liv[i].quantite=quantiteNew;
+        trouve=1;
+    }
+    if(!trouve){
+        printf("le titre tu donner <%s> not found ",titreR);
+    }
+}
+}
 int main(){
 int n;
 printf("Donner le nombre de livre pour la creation : ");
 scanf("%d",&n);
 Livre liv[n];
 Ajouter(liv,n);
+Affiche(liv,n);
+
+Update(liv,n);
 Affiche(liv,n);
 
 
