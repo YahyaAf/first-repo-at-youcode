@@ -1,5 +1,5 @@
 Premier Exercice pour les fonctions:
-    #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
