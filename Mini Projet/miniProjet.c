@@ -84,6 +84,16 @@ void Delete(Livre liv[],int *n){
 }
 }
 
+void QuantiteStocks(Livre liv[],int n){
+int i;
+int total=0;
+
+for(i=0;i<n;i++){
+    total+=liv[i].quantite;
+}
+printf("La quantite de livre dans le stock est : %d \n",total);
+}
+
 int main(){
     Livre liv[100];
     int n = 0;
@@ -95,30 +105,34 @@ int main(){
         printf("2- Afficher les livres \n ");
         printf("3- Mettre à jour la quantité d'un livre \n ");
         printf("4- Supprimer un livre \n ");
-        printf("5- Quitter\n");
+        printf("5- Afficher le nombre total de livre dans le stock\n");
+        printf("6- Quitter\n");
         printf("choisie un nombre from menu : ");
         scanf("%d", &choix);
 
         switch (choix) {
             case 1:
-                Ajouter(liv, &n);
+                Ajouter(liv,&n);
                 break;
             case 2:
-                Affiche(liv, n);
+                Affiche(liv,n);
                 break;
             case 3:
-                Update(liv, n);
+                Update(liv,n);
                 break;
             case 4:
-                Delete(liv, &n);
+                Delete(liv,&n);
                 break;
             case 5:
+                QuantiteStocks(liv,n);
+                break;
+            case 6:
                 printf("Quitter le programme \n");
                 break;
             default:
                 printf("The number u chose not found \n");
         }
-    } while (choix != 5);
+    } while (choix != 6);
 
 return 0;
 
