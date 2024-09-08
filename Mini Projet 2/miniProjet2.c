@@ -23,11 +23,34 @@ void Ajouter(Contact ct[],int *n){
     }
     *n= count + *n;
 }
+void Update(Contact ct[],int n){
+    char nomR[100];
+    char numeroNew[100];
+    char emailNew[150];
+    int trouve=0;
+    printf("Donner le nom tu recherche dans le contact : ");
+    scanf("%s",nomR);
+    for(int i=0;i<n;i++){
+        if(strcmp(ct[i].nom,nomR) == 0){
+        printf("Donner la nouvelle numero de telephone : ");
+        scanf("%s",numeroNew);
+        printf("Donner la nouvelle adresse email : ");
+        scanf("%s",emailNew);
+        strcpy(ct[i].numero, numeroNew);
+        strcpy(ct[i].email, emailNew);
+        trouve=1;
+        }
+    }
+    if(!trouve){
+        printf("the name is not fount ! ");
+    }
+}
 int main(){
     int i,choix;
     Contact ct[100];
     int n=0;
     Ajouter(ct,&n);
+    Update(ct,n);
 
 
 return 0;
