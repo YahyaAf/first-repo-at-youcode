@@ -45,12 +45,33 @@ void Update(Contact ct[],int n){
         printf("the name is not fount ! ");
     }
 }
+void Delete(Contact ct[], int *n){
+    char nomR[100];
+    int trouve=0;
+    int i,j;
+    printf("Donner le nom tu recherche pour la supression : ");
+    scanf("%s",nomR);
+    for(i=0;i<*n;i++){
+        if(strcmp(ct[i].nom,nomR)== 0){
+            printf("La supression valider ! \n");
+            trouve = 1;
+            for(j=i;j<*n-1;j++){
+                ct[j]=ct[j+1];
+            }
+            (*n)--;
+        }
+    }
+    if(!trouve){
+        printf("the name is not fount \n! ");
+    }
+}
 int main(){
     int i,choix;
     Contact ct[100];
     int n=0;
     Ajouter(ct,&n);
-    Update(ct,n);
+    //Update(ct,n);
+    Delete(ct,&n);
 
 
 return 0;
