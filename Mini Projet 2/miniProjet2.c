@@ -73,14 +73,65 @@ void Affichage(Contact ct[], int n){
         printf("Le email de cette contact %d est : %s \n",i+1,ct[i].email);
     }
 }
+void Recherche(Contact ct[], int n){
+    int i;
+    char nomR[100];
+    int trouve=0;
+    printf("Donner le nom tu recherche pour la l'affichage : ");
+    scanf("%s",nomR);
+    for(i=0;i<n;i++){
+        if(strcmp(ct[i].nom,nomR)== 0 ){
+            printf("Le nom de cette contact est : %s \n",ct[i].nom);
+            printf("Le numero de cette contact est : %s \n",ct[i].numero);
+            printf("Le email de cette contact est : %s \n",ct[i].email);
+            trouve=1;
+        }
+    }
+    if(!trouve){
+        printf("the name is not fount \n! ");
+    }
+}
 int main(){
     int i,choix;
     Contact ct[100];
     int n=0;
-    Ajouter(ct,&n);
-    //Update(ct,n);
-    //Delete(ct,&n);
-    Affichage(ct,n);
+
+do {
+    printf("\nMenu : \n ");
+    printf("1-Ajouter \n");
+    printf("2-Modifier \n");
+    printf("3-Delete \n");
+    printf("4-Affichage \n");
+    printf("5-Affichage By Nom \n");
+    printf("6-Quitter \n");
+    scanf("%d",&choix);
+
+    switch(choix){
+        case 1:
+            Ajouter(ct,&n);
+            break;
+        case 2:
+            Update(ct,n);
+            break;
+        case 3:
+            Delete(ct,&n);
+            break;
+        case 4:
+            Affichage(ct,n);
+            break;
+        case 5:
+            Recherche(ct, n);
+            break;
+        case 6:
+            printf("Quitter le programme ! ");
+            break;
+        default :
+            printf("This number is not found ! ");
+
+    }
+}while(choix!=6);
+
+
 
 
 return 0;
