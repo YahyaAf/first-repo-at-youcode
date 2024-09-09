@@ -65,13 +65,22 @@ void Delete(Contact ct[], int *n){
         printf("the name is not fount \n! ");
     }
 }
+void Affichage(Contact ct[], int n){
+    int i;
+    for(i=0;i<n;i++){
+        printf("Le nom de cette contact %d est : %s \n",i+1,ct[i].nom);
+        printf("Le numero de cette contact %d est : %s \n",i+1,ct[i].numero);
+        printf("Le email de cette contact %d est : %s \n",i+1,ct[i].email);
+    }
+}
 int main(){
     int i,choix;
     Contact ct[100];
     int n=0;
     Ajouter(ct,&n);
     //Update(ct,n);
-    Delete(ct,&n);
+    //Delete(ct,&n);
+    Affichage(ct,n);
 
 
 return 0;
