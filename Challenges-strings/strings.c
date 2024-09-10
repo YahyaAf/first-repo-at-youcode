@@ -111,4 +111,47 @@ int main()
 }
 challenge 9:
 
+int main()
+{
+    char Nom[100];
+    int count;
+
+    printf("Donner Votre nom  : ");
+    gets(Nom);
+    count=strlen(Nom);
+    for(int i=0;i<count;i++){
+        if(Nom[i] == ' '){
+            for(int j=i;j<count-1;j++){
+                Nom[j]=Nom[j+1];
+            }
+        }
+
+    }
+    printf("Voila le nom : %s",Nom);
+
+    return 0;
+}
+challenge 10:
+int main()
+{
+    char chaine[100];
+    char sousChaine[100];
+
+    printf("Donner un chaine de caractere  : ");
+    gets(chaine);
+    printf("Donner Le sous titre : ");
+    gets(sousChaine);
+    printf("Chaine de carractere : %s \n",chaine);
+    printf("Sous Titre : %s \n",sousChaine);
+
+     if(strcmp(chaine,sousChaine) == 0){
+        printf("Sous chaine dans la chaine de caractere ! ");
+    }else{
+        printf("The sous titre is not in the chaine de carractere ! ");
+    }
+
+    return 0;
+}
+
+
 
