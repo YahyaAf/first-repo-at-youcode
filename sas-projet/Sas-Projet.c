@@ -279,7 +279,7 @@ void Afficher_Top_3(Etudiant etu[], int n){
         printf("Date de naissance : %d/%d/%d\n", etu[i].date.day, etu[i].date.month, etu[i].date.year);
         printf("Departement : %s\n", etu[i].departement);
         printf("Note generale : %.2f\n", etu[i].note_generale);
-        printf("----------------------------\n");
+        printf("===========================================\n");
     }
 }
 
@@ -353,6 +353,54 @@ void Etudiant_Par_Reseaux(Etudiant etu[], int n){
         }
     }
 }
+void Trier_Par_Nom(Etudiant etu[], int n) {
+    Etudiant temp;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (strcmp(etu[i].nom, etu[j].nom) > 0) {
+                temp = etu[i];
+                etu[i] = etu[j];
+                etu[j] = temp;
+            }
+        }
+    }
+    printf("Liste des noms des étudiants triés par ordre croissant :\n");
+    for (int i = 0; i < n; i++) {
+        printf("%s\n", etu[i].nom);
+    }
+}
+void Trier_Par_Moyenne(Etudiant etu[], int n){
+    Etudiant temp;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (etu[i].note_generale < etu[j].note_generale) {
+                temp = etu[i];
+                etu[i] = etu[j];
+                etu[j] = temp;
+            }
+        }
+    }
+    printf("Liste des Etudiants triés par moyenne generale en ordre croissant :\n");
+    for (int i = 0; i < n; i++) {
+        printf("Nom : %s, Prenom : %s, Moyenne generale : %.2f\n", etu[i].nom, etu[i].prenom, etu[i].note_generale);
+    }
+}
+
+void Trier_Par_Statut(Etudiant etu[], int n){
+    printf("Étudiants réussis (moyenne >= 10) :\n");
+    for (int i = 0; i < n; i++) {
+        if (etu[i].note_generale >= 10) {
+            printf("Nom : %s, Prénom : %s, Moyenne générale : %.2f\n", etu[i].nom, etu[i].prenom, etu[i].note_generale);
+        }
+    }
+    printf("Étudiants non réussis (moyenne < 10) :\n");
+    for (int i = 0; i < n; i++) {
+        if (etu[i].note_generale < 10) {
+            printf("Nom : %s, Prénom : %s, Moyenne générale : %.2f\n", etu[i].nom, etu[i].prenom, etu[i].note_generale);
+        }
+    }
+}
+
 int main() {
     Etudiant etu[100];
     int n = 0;
@@ -372,7 +420,10 @@ int main() {
         printf("        10- Afficher le nombre d'étudiants ayant réussi dans chaque département \n");
         printf("11- Rechercher un étudiant par son nom \n");
         printf("12- Afficher la liste des étudiants inscrits dans un département spécifique \n");
-        printf("13- Quitter\n");
+        printf("13- Tri alphabétique des étudiants en fonction de leur nom \n");
+        printf("14- Tri des étudiants par moyenne générale, du plus élevé au plus faible ou inversement \n");
+        printf("15- Tri des étudiants selon leur statut de réussite  \n");
+        printf("16- Quitter\n");
         printf("choisie un nombre from menu : ");
         scanf("%d", &choix);
 
@@ -419,13 +470,21 @@ int main() {
                 Etudiant_Par_Reseaux(etu,n);
                 break;
             case 13:
-                printf("Quitter le programme ! ");
+                Trier_Par_Nom(etu,n);
                 break;
-
+            case 14:
+                Trier_Par_Moyenne(etu,n);
+                break;
+            case 15:
+                Trier_Par_Statut(etu,n);
+                break;
+            case 16:
+                printf("Quitter le programme !! ");
+                break;
             default:
                 printf("The number u chose not found \n");
         }
-    } while (choix != 13);
+    } while (choix != 16);
 
 
 
