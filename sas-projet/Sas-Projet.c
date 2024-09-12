@@ -20,6 +20,7 @@ typedef struct {
 
 void Ajoute_Etudiant(Etudiant etu[], int *n) {
     int count = 0;
+    int choix;
 
     printf("Entrer Nombre d'etudiant pour l'Ajoute : ");
     scanf("%d", &count);
@@ -52,13 +53,26 @@ void Ajoute_Etudiant(Etudiant etu[], int *n) {
                     printf("L'age entre 30 et 18 ans \n");
             }
         }while((etu[i].date.year < 1995 || etu[i].date.year > 2007 ));
-        do{
-                printf("Donner le departement(dev/reseaux) de Etudiant %d : ", i + 1);
-                scanf("%s", etu[i].departement);
-                if(strcmp(etu[i].departement, "dev") != 0 && strcmp(etu[i].departement, "reseaux") != 0){
-                    printf("Votre departement not found !! \n");
-                }
-        }while(strcmp(etu[i].departement, "dev") != 0 && strcmp(etu[i].departement, "reseaux") != 0);
+        printf("  Departement:  \n");
+        printf("\t 1-dev \n");
+        printf("\t 2-reseaux \n");
+        printf("\t 3-gestion \n");
+        scanf(" %d",&choix);
+        switch(choix)
+        {
+        case 1:
+            strcpy(etu[i].departement, "dev");
+            break;
+        case 2:
+            strcpy(etu[i].departement, "reseaux");
+            break;
+        case 3:
+            strcpy(etu[i].departement, "gestion");
+            break;
+        default:
+            printf(" il ya seulement trois choix !! \n");
+            break;
+        }
         do {
                 printf("Donner la note generale de Etudiant %d : ", i + 1);
                 scanf("%f", &etu[i].note_generale);
@@ -74,6 +88,7 @@ void Ajoute_Etudiant(Etudiant etu[], int *n) {
 void Update_Etudiant(Etudiant etu[], int n) {
     int id;
     int trouve = 0;
+    int choix;
 
     printf("Donner le numero unique de l'etudiant pour modifier : ");
     scanf("%d", &id);
@@ -106,13 +121,25 @@ void Update_Etudiant(Etudiant etu[], int n) {
                         printf("L'age entre 30 et 18 ans \n");
                 }
             }while((etu[i].date.year < 1995 || etu[i].date.year > 2007 ));
-            do{
-                printf("Donner le nouveaux departement(dev/reseaux) de Etudiant %d : ", i + 1);
-                scanf("%s", etu[i].departement);
-                if(strcmp(etu[i].departement, "dev") != 0 && strcmp(etu[i].departement, "reseaux") != 0){
-                    printf("Votre departement not found !! \n");
+            printf("  Departement:  \n");
+                printf("\t 1-dev \n");
+                printf("\t 2-reseaux \n");
+                printf("\t 3-gestion \n");
+                scanf(" %d",&choix);
+                switch(choix){
+                case 1:
+                    strcpy(etu[i].departement, "dev");
+                    break;
+                case 2:
+                    strcpy(etu[i].departement, "reseaux");
+                    break;
+                case 3:
+                    strcpy(etu[i].departement, "gestion");
+                    break;
+                default:
+                    printf(" il ya seulement trois choix !! \n");
+                    break;
                 }
-            }while(strcmp(etu[i].departement, "dev") != 0 && strcmp(etu[i].departement, "reseaux") != 0);
             do {
                 printf("Donner la nouvelle note generale : ");
                 scanf("%f", &etu[i].note_generale);
@@ -210,6 +237,25 @@ void Moyenne_Reseaux(Etudiant etu[], int n) {
     }
 }
 
+void Moyenne_Gestion(Etudiant etu[], int n){
+    float sommeGes = 0;
+    int countGes = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (strcmp(etu[i].departement, "gestion") == 0) {
+            sommeGes += etu[i].note_generale;
+            countGes++;
+        }
+    }
+
+    if (countGes > 0) {
+        float moyGes = sommeGes / countGes;
+        printf("La moyenne du departement gestion est : %.2f \n", moyGes);
+    } else {
+        printf("Aucun étudiant dans le departement gestion \n");
+    }
+}
+
 void Moyenne_Generale(Etudiant etu[], int n){
     float somme= 0;
     float moy;
@@ -246,6 +292,17 @@ void Nombre_Etudiant_Reseaux(Etudiant etu[], int n){
         }
     }
     printf("Le Nombre d'Etudiant Dans departement Reseaux est : %d \n",countRes);
+}
+
+void Nombre_Etudiant_Gestion(Etudiant etu[], int n){
+    int countGes = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (strcmp(etu[i].departement, "gestion") == 0) {
+            countGes++;
+        }
+    }
+    printf("Le Nombre d'Etudiant Dans departement Gestion est : %d \n",countGes);
 }
 
 void Etudiant_Seuil(Etudiant etu[], int n){
@@ -294,7 +351,7 @@ void Etudiant_Reussi_Dev(Etudiant etu[], int n){
     printf("Les Etudiants Reussi Dans le developpement : %d\n",count);
 }
 
- void Etudiant_Reussi_Reseaux(Etudiant etu[], int n){
+void Etudiant_Reussi_Reseaux(Etudiant etu[], int n){
     int count=0;
     for (int i = 0; i < n; i++) {
         if(etu[i].note_generale>=10 && strcmp(etu[i].departement, "reseaux") == 0 ){
@@ -303,6 +360,17 @@ void Etudiant_Reussi_Dev(Etudiant etu[], int n){
     }
     printf("Les Etudiants Reussi Dans le reseaux : %d\n",count);
 }
+
+void Etudiant_Reussi_Gestion(Etudiant etu[], int n){
+    int count=0;
+    for (int i = 0; i < n; i++) {
+        if(etu[i].note_generale>=10 && strcmp(etu[i].departement, "gestion") == 0 ){
+            count++;
+        }
+    }
+    printf("Les Etudiants Reussi Dans le gestion : %d\n",count);
+}
+
 void Etudiant_Par_Nom(Etudiant etu[], int n) {
     char nomR[100];
     int trouve = 0;
@@ -336,6 +404,7 @@ void Etudiant_Par_Dev(Etudiant etu[], int n){
             printf("Date de naissance : %d/%d/%d\n", etu[i].date.day, etu[i].date.month, etu[i].date.year);
             printf("Departement : %s\n", etu[i].departement);
             printf("Note generale : %.2f\n", etu[i].note_generale);
+            printf("==================================\n");
         }
     }
 }
@@ -350,9 +419,26 @@ void Etudiant_Par_Reseaux(Etudiant etu[], int n){
             printf("Date de naissance : %d/%d/%d\n", etu[i].date.day, etu[i].date.month, etu[i].date.year);
             printf("Departement : %s\n", etu[i].departement);
             printf("Note generale : %.2f\n", etu[i].note_generale);
+            printf("==================================\n");
         }
     }
 }
+
+void Etudiant_Par_Gestion(Etudiant etu[], int n){
+    printf("List des Etudiant Inscrit sur Departement gestion : \n");
+    for (int i = 0; i < n; i++) {
+        if (strcmp(etu[i].departement, "gestion") == 0) {
+            printf("L'etudiant avec le numero unique <%d>:\n", etu[i].numeroUnique);
+            printf("Nom : %s\n", etu[i].nom);
+            printf("Prenom : %s\n", etu[i].prenom);
+            printf("Date de naissance : %d/%d/%d\n", etu[i].date.day, etu[i].date.month, etu[i].date.year);
+            printf("Departement : %s\n", etu[i].departement);
+            printf("Note generale : %.2f\n", etu[i].note_generale);
+            printf("==================================\n");
+        }
+    }
+}
+
 void Trier_Par_Nom(Etudiant etu[], int n) {
     Etudiant temp;
     for (int i = 0; i < n - 1; i++) {
@@ -443,6 +529,7 @@ int main() {
             case 5:
                 Moyenne_Reseaux(etu,n);
                 Moyenne_Dev(etu,n);
+                Moyenne_Gestion(etu,n);
                 Moyenne_Generale(etu,n);
                 break;
             case 6:
@@ -451,6 +538,7 @@ int main() {
             case 7:
                 Nombre_Etudiant_Dev(etu,n);
                 Nombre_Etudiant_Reseaux(etu,n);
+                Nombre_Etudiant_Gestion(etu,n);
                 break;
             case 8:
                 Etudiant_Seuil(etu,n);
@@ -461,6 +549,7 @@ int main() {
             case 10:
                 Etudiant_Reussi_Dev(etu,n);
                 Etudiant_Reussi_Reseaux(etu,n);
+                Etudiant_Reussi_Gestion(etu,n);
                 break;
             case 11:
                 Etudiant_Par_Nom(etu,n);
@@ -468,6 +557,7 @@ int main() {
             case 12:
                 Etudiant_Par_Dev(etu,n);
                 Etudiant_Par_Reseaux(etu,n);
+                Etudiant_Par_Gestion(etu,n);
                 break;
             case 13:
                 Trier_Par_Nom(etu,n);
